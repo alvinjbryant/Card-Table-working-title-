@@ -60,25 +60,11 @@ The long-term goal is to evolve this project from a simple card game into a modu
 ```txt
 /card-game
 │
-├── src/
+├
 │   ├── main.c
 │   ├── Deck.c
-│   ├── Game.c
-│   └── UI.c
-│
-├── include/
 │   ├── Deck.h
-│   ├── Game.h
-│   └── UI.h
-│
-├── assets/
-│
-├── docs/
-│
-├── screenshots/
-│
-├── LICENSE
-└── README.md
+
 ```
 
 ---
