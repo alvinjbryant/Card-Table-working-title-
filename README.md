@@ -96,7 +96,7 @@ typedef struct {
 ## Linux/macOS
 
 ```bash
-gcc src/*.c -o cardgame
+gcc main.c Deck.c -o cardgame
 ./cardgame
 ```
 
