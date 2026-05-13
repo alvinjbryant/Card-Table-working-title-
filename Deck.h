@@ -7,6 +7,7 @@
 #define DECK_SIZE 52
 
 
+
 typedef enum {
     HEARTS,
     DIAMONDS,
@@ -24,6 +25,19 @@ typedef struct {
     Suit suit;
     Rank rank;
 } Card;
+
+typedef struct {
+    Card cards[8];
+    int count;
+} Hand;
+
+
+typedef struct {
+    char name[32];
+    Hand hand;
+    int score;
+} Player;
+
 
 typedef struct {
     Card cards[DECK_SIZE];
