@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "Deck.h"
+#include "Menu.h"
 
 void clearScreen() {
     system("clear"); // use "cls" on Windows
@@ -189,6 +190,61 @@ void animateDrawSlide(Deck *deck,
     }
 }
 
+void renderTableLayout(Player players[]) {
+
+    clearScreen();
+
+    printf("\n\n");
+
+    // TOP PLAYER
+    printf("                         PLAYER 3\n");
+    printf("                     Cards: %d\n",
+           players[2].hand.count);
+
+    printf("\n\n");
+
+    // TABLE TOP CURVE
+    printf("              _______________________\n");
+    printf("           .-'                       '-.\n");
+    printf("         .'                             '.\n");
+
+    // LEFT + RIGHT PLAYERS
+    printf("       PLAYER 2                     PLAYER 4\n");
+
+    printf("       Cards: %-2d                  Cards: %-2d\n",
+           players[1].hand.count,
+           players[3].hand.count);
+
+    // TABLE CENTER
+    printf("      /                                 \\\n");
+    printf("     /                                   \\\n");
+    printf("    |                                     |\n");
+    printf("    |           THE CARD TABLE            |\n");
+    printf("    |                                     |\n");
+    printf("     \\                                   /\n");
+    printf("      \\_________________________________/\n");
+
+    printf("\n");
+
+    // PLAYER 1 (YOU)
+    printf("                    YOU (PLAYER 1)\n");
+    printf("                    Cards: %d\n",
+           players[0].hand.count);
+
+    printf("\n");
+
+    // PLAYER 1 HAND
+    if (players[0].hand.count > 0) {
+
+        printHand(players[0].hand.cards,
+                  players[0].hand.count);
+    }
+
+    printf("\n");
+    printf("[ENTER] Draw Card\n");
+    printf("[q] Quit\n");
+}
+
 
 void render(Deck *deck, Card hand[], int handCount) {
 
@@ -216,26 +272,72 @@ void render(Deck *deck, Card hand[], int handCount) {
 
 int main() {
 
+    int choice;
+
+    while (1) {
+
+        printMenu();
+
+        scanf("%d", &choice);
+
+        switch (choice) {
+
+            case 1:
+                printf("VC mode not implemented yet.\n");
+                break;
+
+            case 2:
+                printf("Hold'em not implemented yet.\n");
+                break;
+
+            case 3:
+                printf("Blackjack not implemented yet.\n");
+                break;
+
+            case 4:
+                printf("Old Maid not implemented yet.\n");
+                break;
+
+            case 5:
+                return 0;
+
+            default:
+                printf("Invalid choice.\n");
+                break;
+        }
+
+        printf("\nPress ENTER to continue...");
+        getchar();
+        getchar();
+    }
+
+    return 0;
+
     Deck deck;
 
     initDeck(&deck);
     shuffleDeck(&deck);
 
-Player players[4];
+    Player players[4];
 
-snprintf(players[0].name,
-         sizeof(players[0].name),
-         "Player 1");
+     for (int i = 0; i < 4; i++) {
 
-players[0].hand.count = 0;
-players[0].score = 0;
+    snprintf(players[i].name,
+             sizeof(players[i].name),
+             "Player %d",
+             i + 1);
+
+    players[i].hand.count = 0;
+
+    players[i].score = 0;
+    }
 
 
     char input;
 
     while (1) {
 
-        render(&deck, players[0].hand.cards, players[0].hand.count);
+        renderTableLayout(players);
 
         input = getchar();
 
