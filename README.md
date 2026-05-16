@@ -1,21 +1,42 @@
+# Terminal Card Table Engine
 
+A modular terminal-based card game engine written entirely in vanilla C.
 
-# Terminal Card Game Engine (C)
+This project began as a low-level programming exercise focused on understanding how card games, rendering systems, and game loops work beneath modern engines and frameworks. It has since evolved into a growing terminal game framework with plans for multiplayer networking, animated rendering, and scalable game architecture.
 
-A terminal-based card game engine written entirely in vanilla C using a standard 52-card deck.
+The engine currently includes:
+- A fully modeled 52-card deck system
+- Terminal-rendered playing cards using Unicode
+- A modular game structure
+- A playable Blackjack implementation
+- Animated card draw effects in the terminal
+- Makefile-based compilation
 
-This project is being built from scratch to deepen understanding of:
-- Low-level programming
-- Memory management
-- Data structures
-- Game architecture
-- Rendering systems
-- Networking concepts
-- Multiplayer systems
-- Terminal UI/animation
-- Performance optimization
+---
 
-The long-term goal is to evolve this project from a simple card game into a modular multiplayer game framework with animated terminal rendering and online play capabilities.
+# Preview
+
+## Unicode Card Rendering
+
+```txt
+┌─────────┐
+│ A       │
+│         │
+│    ♠    │
+│         │
+│       A │
+└─────────┘
+```
+
+## Current Games
+- Blackjack
+- Framework for additional games
+
+## Planned Games
+- Texas Hold'em
+- Old Maid
+- Multiplayer card tables
+- Custom game modes
 
 ---
 
@@ -24,24 +45,44 @@ The long-term goal is to evolve this project from a simple card game into a modu
 ## Current Features
 - Standard 52-card deck
 - Deck initialization
-- Deck shuffling
+- Fisher-Yates deck shuffling
 - Card drawing system
-- Hand rendering in terminal
-- Modular code structure
+- Unicode terminal card rendering
+- ANSI color support
+- Animated card draw effects
+- Modular game structure
+- Blackjack gameplay loop
+- Menu system
+- Makefile build support
 
-## Planned Features
-- ASCII/Unicode card rendering
-- Terminal animations
-- Mouse/keyboard input system
-- Turn-based game loop
-- AI opponents
-- Multiplayer networking
-- Lobby system
-- Movable player avatars
-- Save/load systems
+---
+
+# Planned Features
+
+## Engine Features
+- Cross-platform terminal support
+- Better rendering abstraction
+- Scene/state management
+- Input handling system
+- Save/load support
 - Replay system
-- Custom rule sets
-- Cross-platform compatibility
+- Audio support
+
+## Multiplayer Features
+- Socket networking
+- Client/server architecture
+- Lobby system
+- Matchmaking
+- Synchronization systems
+- Chat system
+
+## Gameplay Features
+- Texas Hold'em
+- AI opponents
+- Betting systems
+- Multiple players
+- Tournament support
+- Rule customization
 
 ---
 
@@ -49,88 +90,184 @@ The long-term goal is to evolve this project from a simple card game into a modu
 
 - Language: C
 - Compiler: GCC / Clang
-- Build System: Make (planned)
-- Platform: Linux/macOS initially
-- Graphics: Terminal rendering (ASCII/Unicode)
+- Build System: Make
+- Rendering: ASCII / Unicode terminal rendering
+- Platform Target:
+  - Linux
+  - macOS
+  - Windows support planned
 
 ---
 
 # Project Structure
 
 ```txt
-/card-game
+Card-Table-working-title/
 │
-├
-│   ├── main.c
-│   ├── Deck.c
-│   ├── Deck.h
-
+├── main.c
+├── Deck.c
+├── Deck.h
+├── Menu.c
+├── Menu.h
+├── Makefile
+├── LICENSE
+│
+└── Games/
+    └── Blackjack/
+        ├── blackjack.c
+        └── blackjack.h
 ```
 
 ---
 
-# Example Card Structure
+# Core Architecture
+
+## Deck System
+
+The engine uses strongly typed enums and structs to model a real card deck.
+
+### Card Structure
 
 ```c
 typedef struct {
-    int rank;
-    int suit;
+    Suit suit;
+    Rank rank;
 } Card;
 ```
 
----
-
-# Example Deck Structure
+### Deck Structure
 
 ```c
 typedef struct {
-    Card cards[52];
-    int topCard;
+    Card cards[DECK_SIZE];
+    int top;
 } Deck;
 ```
+
+### Features
+- Type-safe card representation
+- Efficient array-based storage
+- O(1) card draw operations
+- Reusable deck system for multiple games
+
+---
+
+# Blackjack Module
+
+The current playable implementation includes:
+- Player hit/stand loop
+- Dealer AI
+- Hand scoring
+- Bust detection
+- Win/loss/push evaluation
+
+The Blackjack game is intentionally modularized into:
+
+```txt
+Games/Blackjack/
+```
+
+This structure allows future games to be added cleanly without modifying the engine core.
 
 ---
 
 # Compilation
 
-## Linux/macOS
+## Linux / macOS
+
+Build:
 
 ```bash
-gcc main.c Deck.c -o cardgame
+make build
+```
+
+Run:
+
+```bash
 ./cardgame
 ```
 
 ---
 
+## Manual Compilation
+
+```bash
+gcc main.c Deck.c Menu.c Games/Blackjack/blackjack.c -o cardgame
+```
+
+---
+
+# Design Philosophy
+
+This project intentionally avoids external libraries and engines in order to develop:
+- Systems programming skills
+- Memory management understanding
+- Data structure fluency
+- Software architecture discipline
+- Rendering fundamentals
+- Networking knowledge
+- Performance awareness
+
+The goal is to understand how systems work underneath abstraction layers rather than relying entirely on frameworks.
+
+---
+
 # Learning Goals
 
-This project is intentionally being built without external game engines in order to develop:
-- Systems programming skills
-- Problem-solving ability
-- Understanding of memory/layout
-- Networking fundamentals
-- Software architecture discipline
+This project is being used to study and practice:
+- Low-level C programming
+- Modular architecture
+- Terminal rendering
+- Data-oriented design
+- Multiplayer networking concepts
+- Real-time synchronization
+- Cross-platform compilation
+- Input systems
+- Game state management
 
 ---
 
-# Future Networking Goals
+# Roadmap
 
-Planned multiplayer features include:
-- Client/server architecture
-- Socket programming
-- Matchmaking
-- Session management
-- State synchronization
+## Near-Term Goals
+- Better Blackjack UI
+- Hidden dealer cards
+- Chip/betting system
+- Input validation
+- Cross-platform terminal clearing
+
+## Mid-Term Goals
+- Texas Hold'em
+- Multiple players
+- Terminal animations
+- Game state manager
+- Better rendering pipeline
+
+## Long-Term Goals
+- Online multiplayer
+- Dedicated server support
+- Matchmaking/lobbies
+- Replay system
+- Spectator mode
+- Modular plugin-style game support
+
+---
+
+# Example Concepts Planned
+
+## Networking
+- TCP/UDP socket systems
+- Lightweight packet protocols
+- State replication
 - Anti-cheat concepts
-- Lightweight network optimization
+- Latency handling
 
----
-
-# Why This Project Exists
-
-Modern developers often rely heavily on engines and frameworks.
-
-This project is an exercise in understanding what happens underneath the abstraction layers by building systems manually from the ground up.
+## Rendering
+- Animated card movement
+- Layered terminal rendering
+- Dynamic UI panels
+- Cursor positioning
+- Color abstraction
 
 ---
 
@@ -138,12 +275,28 @@ This project is an exercise in understanding what happens underneath the abstrac
 
 This project is licensed under the MIT License.
 
-See the LICENSE file for details.
+See the LICENSE file for more information.
 
 ---
 
 # Author
 
-Built by ALvin Bryant
+Built by A. Bryant
 
-GitHub: https://github.com/alvinjbryant
+- GitHub: https://github.com/alvinjbryant
+
+---
+
+# Why This Project Exists
+
+Modern software development often hides complexity behind layers of abstraction.
+
+This project exists to learn those underlying systems directly by building them manually:
+- card systems
+- rendering
+- game loops
+- architecture
+- networking
+- memory handling
+
+The long-term vision is to turn this into a fully modular multiplayer terminal card game framework written entirely in C.
