@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "Deck.h"
 #include "Menu.h"
+#include "Games/Blackjack/blackjack.h"
 
 void clearScreen() {
     system("clear"); // use "cls" on Windows
@@ -291,7 +292,7 @@ int main() {
                 break;
 
             case 3:
-                printf("Blackjack not implemented yet.\n");
+                blackjack_start();
                 break;
 
             case 4:
