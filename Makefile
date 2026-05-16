@@ -1,0 +1,11 @@
+CC = gcc
+
+SRC = main.c \
+      Deck.c \
+      Menu.c \
+      Games/Blackjack/blackjack.c
+
+OUT = cardgame
+
+build:
+	$(CC) $(SRC) -o $(OUT)
