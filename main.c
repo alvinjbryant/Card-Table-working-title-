@@ -4,6 +4,9 @@
 #include "Deck.h"
 #include "Menu.h"
 #include "Games/Blackjack/blackjack.h"
+#include "Games/TexasHoldem/TexasHoldem.h"
+#include "Games/OldMaid/OldMaid.h"
+#include "Games/VC/VC.h"
 
 void clearScreen() {
     system("clear"); // use "cls" on Windows
@@ -284,11 +287,11 @@ int main() {
         switch (choice) {
 
             case 1:
-                printf("VC mode not implemented yet.\n");
+                vc_start();
                 break;
 
             case 2:
-                printf("Hold'em not implemented yet.\n");
+                texas_holdem_start();
                 break;
 
             case 3:
@@ -296,7 +299,7 @@ int main() {
                 break;
 
             case 4:
-                printf("Old Maid not implemented yet.\n");
+                oldmaid_start();
                 break;
 
             case 5:
