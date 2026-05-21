@@ -3,6 +3,7 @@ CC = gcc
 SRC = main.c \
       Deck.c \
       Menu.c \
+      Lobby/Lobby.c \
       Games/Blackjack/blackjack.c \
       Games/TexasHoldem/TexasHoldem.c \
       Games/OldMaid/OldMaid.c \
