@@ -4,6 +4,8 @@ SRC = main.c \
       Deck.c \
       Menu.c \
       Lobby/Lobby.c \
+	  Lobby/LobbyManager.c \
+      Lobby/LobbyResult.c\
       Games/Blackjack/blackjack.c \
       Games/TexasHoldem/TexasHoldem.c \
       Games/OldMaid/OldMaid.c \
