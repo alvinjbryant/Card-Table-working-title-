@@ -4,6 +4,8 @@
 #include "Deck.h"
 #include "Menu.h"
 #include "Lobby/Lobby.h"
+#include "Lobby/LobbyManager.h"
+#include "Lobby/LobbyResult.h"
 #include "Games/Blackjack/blackjack.h"
 #include "Games/TexasHoldem/TexasHoldem.h"
 #include "Games/OldMaid/OldMaid.h"
